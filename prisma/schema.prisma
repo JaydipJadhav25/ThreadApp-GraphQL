@@ -20,7 +20,7 @@ model User{
   fristName String @map("frist_name")
   lastName String @map("last_name")
   email String @unique
-  profileImage String @map("profile_image")
+  profileImage String? @map("profile_image")
   password String
   salt String
 
