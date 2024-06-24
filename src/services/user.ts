@@ -101,7 +101,10 @@ public static decodejwttoken(token: string){
 return jwt.verify(token , secetkey);
 }
 
+
+//to find user user based on id services
 public static getuserbyid(id: string){
+
     return prismaclient.user.findUnique({ where:{id}});
 
 }

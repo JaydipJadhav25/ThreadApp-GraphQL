@@ -13,6 +13,7 @@ getcurrentloggeduser: async(parent:any , parameters:any,context:any)=> {
     // return "demo"
 
     if(context && context.decodetoken ){
+        
         // return context.decodetoken 
 
       const id = context.decodetoken.id;
@@ -21,6 +22,7 @@ getcurrentloggeduser: async(parent:any , parameters:any,context:any)=> {
     }
      
     return new Error("I dont know who are you || Incorrect token")
+
 
     
        

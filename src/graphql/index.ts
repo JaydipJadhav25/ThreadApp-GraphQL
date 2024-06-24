@@ -14,7 +14,6 @@ const gqlserver = new ApolloServer({
     type Query {
     
             ${User.queries}
-           
     }
 
     type Mutation {
