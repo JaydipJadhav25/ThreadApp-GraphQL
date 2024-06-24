@@ -2,14 +2,18 @@ import userservice, { createuserplayod, getusertokenpayload } from "../../servic
 
 
 const queries = {
-    getusertoken: async(parent:any,payload :getusertokenpayload) =>{
+
+getusertoken: async(parent:any,payload :getusertokenpayload) =>{
         const{email , password} =payload;
         const token = await userservice.getusertoken(payload);
           return token;
-    }
+    },
+getcurrentloggeduser: async() =>{
 
-};
-
+        // return "demo user"
+        return new Error("i dont no who are you?")
+    }    
+}
 
 const mutations = {
 

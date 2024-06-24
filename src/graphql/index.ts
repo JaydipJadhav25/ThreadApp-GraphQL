@@ -2,15 +2,19 @@ import { ApolloServer } from '@apollo/server';
 //import user of all conf.
 
 import {User} from "./user/index"
+import { Context } from 'node:vm';
 
 async function createapollographqlserver(){
         
     //create graphql server
 const gqlserver = new ApolloServer({
     typeDefs  :`
+      ${User.typeDefs}
+
     type Query {
     
             ${User.queries}
+            getcontext : String
     }
 
     type Mutation {
@@ -21,6 +25,13 @@ const gqlserver = new ApolloServer({
 
         Query :{
          ...User.resolvers.queries
+           ,
+         getcontext: (parent:any, parameters:any , context) =>{
+        
+       console.log("context : " , context)
+       return "context wroking done"
+
+         }
      
         },
         Mutation :{

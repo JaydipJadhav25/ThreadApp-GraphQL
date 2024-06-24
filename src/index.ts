@@ -21,7 +21,13 @@ app.use(express.json());
 
 //call graphql server and rgister on /graphql root
 const qlserver = await createapollographqlserver();
- app.use("/graphql",expressMiddleware(qlserver)); 
+ app.use("/graphql",expressMiddleware(qlserver ,  {
+    context : async( { req}) =>{ 
+        return{
+            name: "jaydip"
+        }
+    }
+ })); 
 
  //in one line pass server 
 //  app.use("/graphql",expressMiddleware(await createapollographqlserver())); 

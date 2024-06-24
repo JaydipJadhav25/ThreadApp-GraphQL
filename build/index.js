@@ -24,7 +24,13 @@ function init() {
         // app.use("/graphql",expressMiddleware(gqlserver)); //set graphql server apn all sathi
         //call graphql server and rgister on /graphql root
         const qlserver = yield (0, graphql_1.default)();
-        app.use("/graphql", (0, express4_1.expressMiddleware)(qlserver));
+        app.use("/graphql", (0, express4_1.expressMiddleware)(qlserver, {
+            context: (_a) => __awaiter(this, [_a], void 0, function* ({ req }) {
+                return {
+                    name: "jaydip"
+                };
+            })
+        }));
         //in one line pass server 
         //  app.use("/graphql",expressMiddleware(await createapollographqlserver())); 
         app.get("/", (req, res) => {
