@@ -1,7 +1,14 @@
-import userservice, { createuserplayod } from "../../services/user";
+import userservice, { createuserplayod, getusertokenpayload } from "../../services/user";
 
 
-const queries = {};
+const queries = {
+    getusertoken: async(parent:any,payload :getusertokenpayload) =>{
+        const{email , password} =payload;
+        const token = await userservice.getusertoken(payload);
+          return token;
+    }
+
+};
 
 
 const mutations = {
