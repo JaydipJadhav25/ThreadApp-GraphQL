@@ -1,6 +1,7 @@
 import express from "express";
 import {expressMiddleware} from "@apollo/server/express4"
 import createapollographqlserver from "./graphql";
+import userservice from "./services/user";
 
 
 
@@ -22,10 +23,27 @@ app.use(express.json());
 //call graphql server and rgister on /graphql root
 const qlserver = await createapollographqlserver();
  app.use("/graphql",expressMiddleware(qlserver ,  {
-    context : async( { req}) =>{ 
-        return{
-            name: "jaydip"
-        }
+     context : async( { req}) =>{ 
+         //access token on rea
+         
+         const token = req.headers["token"]
+         //  const token = req.headers("token");
+
+         //decode token
+         try {
+             
+        const decodetoken = userservice.decodejwttoken(token as string);
+
+          console.log("useer" , decodetoken)
+
+        return { decodetoken };
+
+     } catch (error) {
+        
+        return {}
+     }
+
+
     }
  })); 
 

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const express4_1 = require("@apollo/server/express4");
 const graphql_1 = __importDefault(require("./graphql"));
+const user_1 = __importDefault(require("./services/user"));
 function init() {
     return __awaiter(this, void 0, void 0, function* () {
         const app = (0, express_1.default)();
@@ -26,9 +27,18 @@ function init() {
         const qlserver = yield (0, graphql_1.default)();
         app.use("/graphql", (0, express4_1.expressMiddleware)(qlserver, {
             context: (_a) => __awaiter(this, [_a], void 0, function* ({ req }) {
-                return {
-                    name: "jaydip"
-                };
+                //access token on rea
+                const token = req.headers["token"];
+                //  const token = req.headers("token");
+                //decode token
+                try {
+                    const decodetoken = user_1.default.decodejwttoken(token);
+                    console.log("useer", decodetoken);
+                    return { decodetoken };
+                }
+                catch (error) {
+                    return {};
+                }
             })
         }));
         //in one line pass server 

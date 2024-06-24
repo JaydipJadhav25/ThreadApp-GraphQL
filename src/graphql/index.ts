@@ -14,7 +14,7 @@ const gqlserver = new ApolloServer({
     type Query {
     
             ${User.queries}
-            getcontext : String
+           
     }
 
     type Mutation {
@@ -25,13 +25,13 @@ const gqlserver = new ApolloServer({
 
         Query :{
          ...User.resolvers.queries
-           ,
-         getcontext: (parent:any, parameters:any , context) =>{
+           
+    //      getcontext: (parent:any, parameters:any , context) =>{
         
-       console.log("context : " , context)
-       return "context wroking done"
+    //    console.log("context : " , context)
+    //    return "context wroking done"
 
-         }
+    //      }
      
         },
         Mutation :{

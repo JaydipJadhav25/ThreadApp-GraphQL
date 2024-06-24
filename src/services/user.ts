@@ -97,6 +97,14 @@ return token;
 
 }    
 
+public static decodejwttoken(token: string){
+return jwt.verify(token , secetkey);
+}
+
+public static getuserbyid(id: string){
+    return prismaclient.user.findUnique({ where:{id}});
+
+}
 
 
 }

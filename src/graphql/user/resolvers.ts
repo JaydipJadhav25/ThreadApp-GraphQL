@@ -8,13 +8,26 @@ getusertoken: async(parent:any,payload :getusertokenpayload) =>{
         const token = await userservice.getusertoken(payload);
           return token;
     },
-getcurrentloggeduser: async() =>{
+getcurrentloggeduser: async(parent:any , parameters:any,context:any)=> {
+    // console.log("context: " , context);
+    // return "demo"
 
-        // return "demo user"
-        return new Error("i dont no who are you?")
+    if(context && context.decodetoken ){
+        // return context.decodetoken 
+
+      const id = context.decodetoken.id;
+      const crruser = await userservice.getuserbyid(id);
+      return crruser;
+    }
+     
+    return new Error("I dont know who are you || Incorrect token")
+
+    
+       
     }    
-}
 
+
+}
 const mutations = {
 
 //     createuser :async(parent : any,
